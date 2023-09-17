@@ -43,11 +43,50 @@ def getArticles():
         article_info = article.find("div", class_="s-lg-content-moreinfo")
         if article_info:
             article_cite = article_info.text
+            match_citation = re.match(r'(\D+, \D+\s?\&?) \\xe2\\x80\\x9c(\D+)\s?\\xe2\\x80\\x9d\s?(\D+)\s?(\d+),\s?(no\.\s?\d+)\s?\((.+)\):\s?(\d+).*(https:.*)\.',article_cite)
+            print(match_citation)
+            if match_citation:
+                    authors = match_citation.group(1)
+                    article_authors = authors
+                    #print(f'these are the authors {authors}')
+                    title = match_citation.group(2)
+                    article_title = title
+                    #print(f'this is the article title {article_title}')
+                    publication = match_citation.group(3)
+                    article_publication = publication
+                    #print(f'this is the publication {publication}')
+                    vol_num = match_citation.group(4)
+                    article_volume = vol_num
+                    #print(f'this is the volume number {vol_num}')
+                    iss_num = match_citation.group(5)
+                    article_issue = iss_num
+                    #print(f'this is the issue number {iss_num}')
+                    pages = match_citation.group(7)
+                    article_pages = pages
+                    #print(f'this is the page number {pages}')
+                    pub_date = match_citation.group(6)
+                    article_date = pub_date
+                    #print(f'this is the year of publication {pub_year}')
+                    doi = match_citation.group(8)
+                    article_doi = doi
+                    #print(f'this is the article doi {article_doi}')
+                    
+                  
+            else:
+                    error_note = "there is a problem parsing this citation"
+                    article_authors = error_note
+                    article_title = error_note
+                    article_publication = error_note
+                    article_volume = error_note
+                    article_issue = error_note
+                    article_pages = error_note
+                    article_date = error_note
+                    article_doi = error_note
         else:
             article_cite = "no citation given"
         
 
-        incoming_articles.append({"article link":article_link, "article title":article_title, "article summary":article_abstract, "article citation":article_cite})
+        incoming_articles.append({"article link":article_link, "article title":article_title, "article summary":article_abstract, "article citation":article_cite, "article authors":article_authors, "article title":article_title, "article publication":article_publication, "article volume":article_volume, "article issue":article_issue, "article pages":article_pages, "article date":article_date, "article doi":article_doi})
 
     return incoming_articles
 
@@ -64,7 +103,7 @@ with open(filename, 'a') as f:
 
 # Append results into a CSV file with headers
 updater = "resguide_List.csv"
-field_names=["article link", "article title", "article summary", "article citation"]
+field_names=["article link", "article title", "article summary", "article citation", "article authors", "article title", "article publication", "article volume", "article issue", "article pages", "article date", "article doi"]
 
 with open(updater, 'a') as csvfile:
     writer = csv.DictWriter(csvfile, fieldnames=field_names)
