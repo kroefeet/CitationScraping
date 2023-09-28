@@ -84,6 +84,14 @@ def getArticles():
                     article_doi = error_note
         else:
             article_cite = "no citation given"
+            error_note = "this item has no citation"
+            article_authors = error_note
+            article_publication = error_note
+            article_volume = error_note
+            article_issue = error_note
+            article_pages = error_note
+            article_date = error_note
+            article_doi = error_note
         
 
         incoming_articles.append({"article link":article_link, "article title":article_title, "article summary":article_abstract, "article citation":article_cite, "article authors":article_authors, "article title":article_title, "article publication":article_publication, "article volume":article_volume, "article issue":article_issue, "article pages":article_pages, "article date":article_date, "article doi":article_doi})
