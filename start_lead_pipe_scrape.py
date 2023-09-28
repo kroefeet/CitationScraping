@@ -61,7 +61,7 @@ def getArticles(url):
         article_year = article_year_month[0].text
         article_month = article_year_month[1].text
         # this variable takes the pulled apart date and assembles in into a wikidata friendly version
-        pub_date = article_day +" "+ article_year +" "+ article_month
+        pub_date = article_day +" "+ article_month +" "+ article_year
         #print(pub_date)
         # this variable will grab the HTML of the clipped summary that is displayed
         short_summary = article.find("", class_="")

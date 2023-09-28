@@ -65,7 +65,7 @@ def getArticles(url):
         #print(article_month[0].text)
         article_month = article_year_month[0].text
         article_year = article_year_month[1].text
-        pub_date = article_day +" "+ article_year +" "+ article_month
+        pub_date = article_day +" "+ article_month +" "+ article_year
         #print(pub_date)
         short_summary = article.find("div", class_="gdlr-blog-content")
         short_summary_text = short_summary.text
